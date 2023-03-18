@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BattleLab
   m_EditorClassIdentifier: 
   _type: 0
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: c36fc6313ff48b54d96ba3747631534b, type: 3}
   _buildable: 3
   _playerFacingName: Battle Lab

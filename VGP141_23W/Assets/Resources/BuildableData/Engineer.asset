@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Engineer
   m_EditorClassIdentifier: 
   _type: 2
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: dc70438891c71f740868bb17d14a57f2, type: 3}
   _buildable: 6
   _playerFacingName: Engineer

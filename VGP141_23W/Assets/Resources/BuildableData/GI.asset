@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GI
   m_EditorClassIdentifier: 
   _type: 2
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 8792086415594456717, guid: 40e5c82a0a992044a959381f61ff6591, type: 3}
   _buildable: 5
   _playerFacingName: GI

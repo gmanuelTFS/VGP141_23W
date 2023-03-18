@@ -3,12 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using VGP141_23W;
 
-public class BuildMenuButton : MonoBehaviour
+public class BuildMenuButton : MonoBehaviour, IObserver
 {
     [SerializeField] private Image _fillImage;
     [SerializeField] private Button _button;
     [SerializeField] private TextMeshProUGUI _label;
     [SerializeField] private TextMeshProUGUI _buildCountLabel;
+    [SerializeField] private GameObject _readyStateGameObject;
     
     private BuildMenu _buildMenu;
     private BuildableData _buildableData;
@@ -43,11 +44,37 @@ public class BuildMenuButton : MonoBehaviour
         
         Refresh();
     }
+    
+    /*
+     *      Tech tree should observe whatever actually places a building in the world
+     *          This is when the building is actually built
+     */
 
     private void Refresh()
     {
         _buildCountLabel.text = _buildCount.ToString();
         _buildCountLabel.gameObject.SetActive(_buildCount > 1);
+    }
+
+    private void TriggerBuildProcess()
+    {
+        _buildMenu.TriggerBuildProcess(_buildableData);
+    }
+    
+    private void EnableDisableReadyState(bool pEnable)
+    {
+        _readyStateGameObject.SetActive(pEnable);
+
+        if (pEnable)
+        {
+            _button.onClick.RemoveListener(CreateBuildRequest);
+            _button.onClick.AddListener(TriggerBuildProcess);
+        }
+        else
+        {
+            _button.onClick.RemoveListener(TriggerBuildProcess);
+            _button.onClick.AddListener(CreateBuildRequest);
+        }
     }
 
     private void OnRequestRemainingBuildTimeUpdated(object pSender, RemainingBuildTimeUpdatedEventArgs pArgs)
@@ -60,4 +87,19 @@ public class BuildMenuButton : MonoBehaviour
             Refresh();
         }
     }
+
+    public void OnNotified(string pMessage, params object[] pArgs)
+    {
+        switch (pMessage)
+        {
+            case Messages.BUILDABLE_COMPLETE when pArgs[0] is BuildableData buildableData && buildableData == _buildableData:
+                EnableDisableReadyState(true);
+                break;
+            case Messages.BUILDABLE_BUILT when pArgs[0] is BuildableData buildableData && buildableData == _buildableData:
+                EnableDisableReadyState(false);
+                break;
+        }
+    }
+
+    
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WarFactory
   m_EditorClassIdentifier: 
   _type: 0
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 8013381f45439334c8bac376fd2c901f, type: 3}
   _buildable: 2
   _playerFacingName: War Factory

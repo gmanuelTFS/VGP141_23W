@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Barracks
   m_EditorClassIdentifier: 
   _type: 0
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 73da889e0b8c233498fc28054969d7ef, type: 3}
   _buildable: 1
   _playerFacingName: Barracks

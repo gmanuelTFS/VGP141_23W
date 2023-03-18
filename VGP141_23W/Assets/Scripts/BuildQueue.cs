@@ -46,7 +46,7 @@ namespace VGP141_23W
 
         private void SpawnUnit(BuildableData pBuildableData)
         {
-            NotifyObservers($"{Messages.BUILDABLE_COMPLETE}_{pBuildableData.Type}", pBuildableData);
+            NotifyObservers(Messages.BUILDABLE_COMPLETE, pBuildableData);
         }
 
         public void AddBuildRequest(BuildRequest buildRequest)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Miner
   m_EditorClassIdentifier: 
   _type: 3
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 8b77e7ec65f5cf74dad829129672f47b, type: 3}
   _buildable: 10
   _playerFacingName: Miner

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spy
   m_EditorClassIdentifier: 
   _type: 2
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 51c06acacf969264e8bb215733112ef1, type: 3}
   _buildable: 7
   _playerFacingName: Spy

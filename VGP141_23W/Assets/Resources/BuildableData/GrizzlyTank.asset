@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GrizzlyTank
   m_EditorClassIdentifier: 
   _type: 3
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 2610c36d8d1b3374a80cca08e77bdb9b, type: 3}
   _buildable: 8
   _playerFacingName: Grizzly Tank

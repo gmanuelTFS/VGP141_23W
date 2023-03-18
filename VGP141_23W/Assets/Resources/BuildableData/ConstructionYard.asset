@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ConstructionYard
   m_EditorClassIdentifier: 
   _type: 0
-  _buildTime: 10
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 82d693a45805ed640ae6fb3317a910f8, type: 3}
   _buildable: 0
   _playerFacingName: Construction Yard

@@ -25,11 +25,6 @@ namespace VGP141_23W
             _vehicleBuildQueue = new BuildQueue();
             _buildingBuildQueue = new BuildQueue();
             _defenceBuildingBuildQueue = new BuildQueue();
-            
-            _infantryBuildQueue.AddObserver(_techTree);
-            _vehicleBuildQueue.AddObserver(_techTree);
-            _buildingBuildQueue.AddObserver(_techTree);
-            _defenceBuildingBuildQueue.AddObserver(_techTree);
 
             _buildMenuButtons = new List<BuildMenuButton>();
         }
@@ -40,10 +35,29 @@ namespace VGP141_23W
             int buildableCount = TechTree.BuildableCount;
             for (int i = 0; i < buildableCount; i++)
             {
+                TechTree.Buildable buildable = (TechTree.Buildable)i;
                 BuildMenuButton menuButton = Instantiate(BuildMenuButtonPrefab, transform);
-                string name = ((TechTree.Buildable)i).ToString();
-                menuButton.name = $"{name}BuildMenuButton";
-                menuButton.Initialize(this, Resources.Load<BuildableData>($"BuildableData/{name}"));
+                string buildableName = buildable.ToString();
+                menuButton.name = $"{buildableName}BuildMenuButton";
+                menuButton.Initialize(this, Resources.Load<BuildableData>($"BuildableData/{buildableName}"));
+                
+                
+                switch (buildable.ToBuildableType())
+                {
+                    case BuildableType.Building:
+                        _buildingBuildQueue.AddObserver(menuButton);
+                        break;
+                    case BuildableType.DefenceBuilding:
+                        _defenceBuildingBuildQueue.AddObserver(menuButton);
+                        break;
+                    case BuildableType.Infantry:
+                        break;
+                    case BuildableType.Vehicle:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
                 _buildMenuButtons.Add(menuButton);
             }
             
@@ -52,7 +66,7 @@ namespace VGP141_23W
         
         public void AddBuildRequest(BuildRequest pRequest)
         {
-            switch (pRequest.BuildableData.Type)
+            switch (pRequest.BuildableData.Buildable.ToBuildableType())
             {
                 case BuildableType.Infantry:
                     _infantryBuildQueue.AddBuildRequest(pRequest);
@@ -69,6 +83,21 @@ namespace VGP141_23W
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public void TriggerBuildProcess(BuildableData pBuildableData)
+        {
+            /*
+             * Start with our automated process
+             *      Set positions for buildings that can be built
+             *      Prefab to be spawned
+             *      Something needs to be a subject so that the BUILDABLE_BUILT message can be sent
+             *      Create the "Process" class
+             *          IBuildingPlacementProcess
+             *              StartProcess
+             *              PlaceBuilding
+             */
+            
         }
         
         private void Update()

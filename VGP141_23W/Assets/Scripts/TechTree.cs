@@ -158,7 +158,7 @@ namespace VGP141_23W
 
         public void OnNotified(string pMessage, params object[] args)
         {
-            if (!pMessage.Contains(Messages.BUILDABLE_COMPLETE))
+            if (pMessage != Messages.BUILDABLE_BUILT)
             {
                 return;
             }

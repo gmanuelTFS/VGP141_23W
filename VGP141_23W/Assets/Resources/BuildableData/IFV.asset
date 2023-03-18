@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IFV
   m_EditorClassIdentifier: 
   _type: 3
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 7ebab79b01916124791716d87ad5c8c5, type: 3}
   _buildable: 9
   _playerFacingName: IFV

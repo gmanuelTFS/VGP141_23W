@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OreRefinery
   m_EditorClassIdentifier: 
   _type: 0
-  _buildTime: 2
+  _buildTime: 1
   _prefab: {fileID: 5504197422829379707, guid: 3b54973b51f99824cb0f579835691cea, type: 3}
   _buildable: 4
   _playerFacingName: Ore Refinery
