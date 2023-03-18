@@ -1,0 +1,97 @@
+Plan
+Queues
+Build RTS units from a menu that builds a unit at a time and then spawns it in the world.
+- A representation of unit of some kind
+	- multiple types of units
+	- Each unit type will need a different build time
+- A build menu of sorts (some way for the player to interact and choose what to build)
+- A build queue of some kind
+	- some time tracking for build progress
+	- spawning in world units
+- In-world representations of units
+	- multiple types
+- In-world building that "builds" the units
+
+===============================================================================================
+
+***A build queue of some kind***
+- data structure that behaves like a queue (perhaps not an actual queue if we are going to be writing to the middle)
+- some way to receive build requests to add to the queue
+- some way to track the current build progress (this could be in the build request itself)
+- every frame, we'd progress the current build request
+- when that build request is finished, we'll need to spawn the actual unit in the game world (or tell something to do the spawning)
+- once spawned, start building the next request in the queue
+
+***A build menu of sorts***
+- this will need to communicate in some way with the build queue
+- functionality of the menu
+	- clicking a button to add a unit build request to the build request queue
+- visual part of the menu
+	- the UI buttons
+	- UI progress visualization
+	- Possibly build a custom queue that is implemented with a Linked List and allows for cancelling build requests
+
+***In-world representations of units***
+- this is going to be a prefab
+- some visual (sprite, 3d mesh)
+- this should like have a in-world unit class or some sort that would handle AI, navigation, combat
+
+***In-world building that "builds" the units***
+- ground in the world
+- visual in the world that is where the units spawn
+- will need to communicate with the build queue
+
+================================================================================================================
+
+---------------------UPDATES-------------------------------------
+- Add a count of how many units of a particular type are in the queue
+- Build buildings and place in the world
+- Place a building in the scene
+- Have units spawn at their associated buildings
+- Make better looking prefabs
+- Add images to menu buttons?
+- Split the build menu into tabs for each type
+
+================================================================================================================
+
+----------------------DONE---------------------
+***A representation of unit of some kind***
+- ideally is simply data
+	- type?
+		- Infantry, Vehicle
+	- build time
+	- in-world representation (prefab)
+	
+***A build queue of some kind***
+- data structure that behaves like a queue (perhaps not an actual queue if we are going to be writing to the middle)
+- some way to receive build requests to add to the queue
+- some way to track the current build progress (this could be in the build request itself)
+- every frame, we'd progress the current build request
+- when that build request is finished, we'll need to spawn the actual unit in the game world (or tell something to do the spawning)
+- once spawned, start building the next request in the queue
+
+***A build menu of sorts***
+- this will need to communicate in some way with the build queue
+- functionality of the menu
+	- clicking a button to add a unit build request to the build request queue
+- visual part of the menu
+	- the UI buttons
+	- UI progress visualization
+
+***In-world representations of units***
+- this is going to be a prefab
+- some visual (sprite, 3d mesh)
+- this should like have a in-world unit class or some sort that would handle AI, navigation, combat
+
+***In-world building that "builds" the units***
+- ground in the world
+
+- Having a queue per buildable type
+    - define the types
+        - Buildings, Defense Buildings, Infantry, Vehicles
+- Create a dependency tree for buildables
+    - Create a graph
+    - Create a tech tree class to set up the dependencies
+- Dynamically populate the menu based on unlocked dependencies
+- Update the menu when things are built/destroyed
+- Implement the observer pattern
