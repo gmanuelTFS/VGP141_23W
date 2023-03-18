@@ -95,7 +95,7 @@ public class BuildMenuButton : MonoBehaviour, IObserver
             case Messages.BUILDABLE_COMPLETE when pArgs[0] is BuildableData buildableData && buildableData == _buildableData:
                 EnableDisableReadyState(true);
                 break;
-            case Messages.BUILDABLE_BUILT when pArgs[0] is BuildableData buildableData && buildableData == _buildableData:
+            case Messages.BUILDABLE_BUILT when pArgs[0] is TechTree.Buildable buildable && buildable == _buildableData.Buildable:
                 EnableDisableReadyState(false);
                 break;
         }

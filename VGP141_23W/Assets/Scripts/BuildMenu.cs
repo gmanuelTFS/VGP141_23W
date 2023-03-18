@@ -14,6 +14,7 @@ namespace VGP141_23W
         private BuildQueue _buildingBuildQueue;
         private BuildQueue _defenceBuildingBuildQueue;
         private List<BuildMenuButton> _buildMenuButtons;
+        private BuildingPlacer _buildingPlacer;
     
         // Start is called before the first frame update
         void Awake()
@@ -27,6 +28,9 @@ namespace VGP141_23W
             _defenceBuildingBuildQueue = new BuildQueue();
 
             _buildMenuButtons = new List<BuildMenuButton>();
+            _buildingPlacer = new BuildingPlacer(new AutoBuildingPlacementStrategy());
+            
+            _buildingPlacer.AddObserver(_techTree);
         }
 
         private void Start()
@@ -58,6 +62,7 @@ namespace VGP141_23W
                         throw new ArgumentOutOfRangeException();
                 }
                 
+                _buildingPlacer.AddObserver(menuButton);
                 _buildMenuButtons.Add(menuButton);
             }
             
@@ -92,14 +97,32 @@ namespace VGP141_23W
              *      Set positions for buildings that can be built
              *      Prefab to be spawned
              *      Something needs to be a subject so that the BUILDABLE_BUILT message can be sent
-             *      Create the "Process" class
-             *          IBuildingPlacementProcess
-             *              StartProcess
-             *              PlaceBuilding
              */
-            
+            UnitView building = _buildingPlacer.StartPlacement(pBuildableData);
+            switch (pBuildableData.Buildable)
+            {
+                case TechTree.Buildable.ConstructionYard when building != null:
+                    break;
+                case TechTree.Buildable.Barracks when building != null:
+                    _infantryBuildQueue.AddObserver(building);
+                    break;
+                case TechTree.Buildable.WarFactory when building != null:
+                    _vehicleBuildQueue.AddObserver(building);
+                    break;
+                case TechTree.Buildable.BattleLab:
+                case TechTree.Buildable.OreRefinery:
+                case TechTree.Buildable.GI:
+                case TechTree.Buildable.Engineer:
+                case TechTree.Buildable.Spy:
+                case TechTree.Buildable.GrizzlyTank:
+                case TechTree.Buildable.IFV:
+                case TechTree.Buildable.Miner:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
-        
+
         private void Update()
         {
             _infantryBuildQueue.Update(Time.deltaTime);

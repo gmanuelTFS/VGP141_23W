@@ -163,14 +163,14 @@ namespace VGP141_23W
                 return;
             }
 
-            if (args[0] is not BuildableData buildableData)
+            if (args[0] is not Buildable buildable)
             {
                 return;
             }
 
-            if (BuildBuildable(buildableData.Buildable))
+            if (BuildBuildable(buildable))
             {
-                NotifyObservers(Messages.TECH_BUILT, buildableData.Buildable);
+                NotifyObservers(Messages.TECH_BUILT, buildable);
             }
         }
     }   

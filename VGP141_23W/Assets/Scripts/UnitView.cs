@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace VGP141_23W
 {
-    public class UnitView : MonoBehaviour
+    public class UnitView : MonoBehaviour, IObserver
     {
         // Start is called before the first frame update
         void Start()
@@ -16,6 +16,11 @@ namespace VGP141_23W
         void Update()
         {
 
+        }
+
+        public void OnNotified(string pMessage, params object[] pArgs)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
