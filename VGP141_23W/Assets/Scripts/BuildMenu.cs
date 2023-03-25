@@ -105,9 +105,11 @@ namespace VGP141_23W
                     break;
                 case TechTree.Buildable.Barracks when building != null:
                     _infantryBuildQueue.AddObserver(building);
+                    building.AddObserver(_techTree);
                     break;
                 case TechTree.Buildable.WarFactory when building != null:
                     _vehicleBuildQueue.AddObserver(building);
+                    building.AddObserver(_techTree);
                     break;
                 case TechTree.Buildable.BattleLab:
                 case TechTree.Buildable.OreRefinery:
