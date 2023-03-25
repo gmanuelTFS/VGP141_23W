@@ -39,7 +39,7 @@ namespace VGP141_23W
                     throw new ArgumentOutOfRangeException();
             }
             // instantiate the prefab
-            UnitView buildingView = Object.Instantiate(pBuildableData.Prefab, spawnPosition, Quaternion.identity);
+            UnitView buildingView = Object.Instantiate(pBuildableData.Prefab, spawnPosition, Quaternion.LookRotation(Vector3.back));
             buildingView.name = pBuildableData.PlayerFacingName;
             
             return buildingView;

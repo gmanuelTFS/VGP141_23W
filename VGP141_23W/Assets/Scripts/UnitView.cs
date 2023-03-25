@@ -6,21 +6,20 @@ namespace VGP141_23W
 {
     public class UnitView : MonoBehaviour, IObserver
     {
-        // Start is called before the first frame update
-        void Start()
+        private void SpawnUnit(BuildableData pBuildableData)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            UnitView unitView = Instantiate(pBuildableData.Prefab, transform.position + transform.forward * transform.localScale.z, Quaternion.LookRotation(transform.forward));
+            unitView.name = pBuildableData.PlayerFacingName;
         }
 
         public void OnNotified(string pMessage, params object[] pArgs)
         {
-            throw new System.NotImplementedException();
+            switch (pMessage)
+            {
+                case Messages.BUILDABLE_COMPLETE when pArgs[0] is BuildableData buildableData:
+                    SpawnUnit(buildableData);
+                    break;
+            }
         }
     }
 }

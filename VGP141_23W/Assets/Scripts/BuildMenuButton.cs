@@ -44,11 +44,6 @@ public class BuildMenuButton : MonoBehaviour, IObserver
         
         Refresh();
     }
-    
-    /*
-     *      Tech tree should observe whatever actually places a building in the world
-     *          This is when the building is actually built
-     */
 
     private void Refresh()
     {
